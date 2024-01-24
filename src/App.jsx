@@ -5,19 +5,17 @@ import { BrowserRouter } from "react-router-dom";
 import routes from "./components/Rute";
 
 
+
 const App = () => {
-  return(
-
-
-    <div>
-      <BrowserRouter>
-        {routes}
-      </BrowserRouter>
-    </div>
-
+  return( 
+  
+  <div>
+    <BrowserRouter>
+      {routes}
+    </BrowserRouter>
+  </div>
 
   )
-  
 };
 
 export default App;

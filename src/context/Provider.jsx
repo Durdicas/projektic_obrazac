@@ -1,5 +1,5 @@
 import React, { createContext, useState } from 'react';
-const Context = createContext(undefined)
+const Context = createContext('undefined')
 
 export const Provider = ({children}) => {
     const [formData, setFormData] = useState([]);
@@ -40,6 +40,7 @@ export const Provider = ({children}) => {
       const onChange = (date, dateString) => {
         console.log(date, dateString);
       };
+
 
       return (
         <Context.Provider value={{handleCancel, handleDelete, formData, setFormData, onFinish}}>{children}</Context.Provider>
