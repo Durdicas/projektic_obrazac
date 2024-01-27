@@ -1,24 +1,23 @@
 import React, {useState} from 'react';
-import '../../../src/index.css';
+//import '../../../src/index.css';
 import { Breadcrumb, Layout, Menu, theme } from 'antd';
 const { Header, Content, Footer } = Layout;
 const items = [
   {
     label: (<a href="/">Home</a>),
-    key: 'home',
+    key: '/',
+    disabled: false,
   },
   {
     label: (<a href="/cijeliobrazac"> Obrazac</a>),
-    key: 'cijeliobrazac',
+    key: '/cijeliobrazac',
     disabled: false,
   },
 ]
 
-
-
 const Lay = (props) => {
 
-  const [current, setCurrent] = useState('mail');
+  const [current, setCurrent] = useState('');
   const onClick = (e) => {
     console.log('click ', e);
     setCurrent(e.key);
@@ -27,6 +26,7 @@ const Lay = (props) => {
   const {
     token: { colorBgContainer, borderRadiusLG },
   } = theme.useToken();
+
   return (
     <Layout style={{minHeight: '100vh', width: '100%'}}>
       <Header
@@ -39,7 +39,7 @@ const Lay = (props) => {
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={['2']}
+          defaultSelectedKeys={['/']}
           items={items}
           style={{
             flex: 1,

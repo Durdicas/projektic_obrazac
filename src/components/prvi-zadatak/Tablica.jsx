@@ -1,13 +1,12 @@
 import { DeleteOutlined, EditOutlined } from '@ant-design/icons';
 import { Popconfirm, Space, Table } from 'antd';
 import { useProvider } from '../../context/Provider';
+import { Tag } from 'antd';
+import { Input } from 'antd';
 
 const Tablica = () => {
 
-    const {handleDelete, formData, setFormData} = useProvider();
-
-   
-
+    const {handleDelete, formData, setFormData, expandable} = useProvider();
     const columns = [
         {
           title: 'Datum',
@@ -18,7 +17,33 @@ const Tablica = () => {
           title: 'Status',
           dataIndex: 'status',
           key: 'status',
-        },
+          render: (_, record) => (
+            <>
+              {[record.status].map((tag) => {
+                let color = tag.length > 5 ? 'geekblue' : 'green';
+                
+                if (tag === 'Redovno') {
+                  color = 'green';
+                }
+                else if (tag === 'Zabrinjavajuće') {
+                  color = 'yellow';
+                }
+                else if (tag === 'Kritično') {
+                  color = 'red';
+                }
+                else if (tag === 'Prazan') {
+                  color = 'gray';
+                }
+                return (
+                  <Tag color={color} key={tag}>
+                    {tag.toUpperCase()}
+                </Tag>
+                );
+              })}
+              </>
+            ),
+          },
+
         {
           title: 'Evidentirao',
           dataIndex: 'recorded',
@@ -47,10 +72,13 @@ const Tablica = () => {
           ),
         },
       ];
+
+
+      
     
 
     return (
-        <Table dataSource={[...formData]} columns={columns} />
+        <Table dataSource={[...formData]} columns={columns} expandable={expandable}/>
     )
 
 }

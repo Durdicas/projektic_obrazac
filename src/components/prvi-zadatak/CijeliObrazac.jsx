@@ -3,20 +3,21 @@ import Lay from './Lay';
 import FormaUnosa from './FormaUnosa';
 import Tablica from './Tablica';
 import { Provider } from '../../context/Provider';
+import Kartica from './Kartica';
 
 const CijeliObrazac = () => {
   return (
     <>
      <Lay>
-        <div>Cijeli obrazac
-            <Provider>
-            <FormaUnosa></FormaUnosa>
+      <Provider>
+        <Kartica title='FORMA UNOSA'>
+          <FormaUnosa></FormaUnosa>
+          </Kartica>
+          <Kartica title='TABLIČNI PRIKAZ PODATAKA'>
             <Tablica></Tablica>
+            </Kartica>
             </Provider>
-           
-        </div>
-        
-     </Lay>
+      </Lay>
     </>
 
    

@@ -10,8 +10,8 @@ import CijeliObrazac from './prvi-zadatak/CijeliObrazac';
 const Rute = (
   <Routes>
 
-    <Route key={'uuidv4()'} path="/" element={<Home/>}/>
-    <Route key={'uuidv4()'} path="/cijeliobrazac" element={<CijeliObrazac />}/>
+    <Route key={/*'uuidv4()'*/ '/'} path="/" element={<Home/>}/>
+    <Route key={/*'uuidv4()'*/ '/cijeliobrazac'} path="/cijeliobrazac" element={<CijeliObrazac />}/>
     {/*<Route key={'uuidv4()'} path="/" element={<Provider><FormaUnosa /><Tablica/></Provider>}/>*/}
     {/*<Route key={'uuidv4()'} path="/" element={<><Layoutic><FormaUnosa /><Tablica/></Layoutic></>}/>*/}
     {/*<Route key={'uuidv4()'} path="/unos" element={<Layoutic></Layoutic>}/>*/}

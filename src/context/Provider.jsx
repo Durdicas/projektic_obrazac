@@ -1,13 +1,17 @@
 import React, { createContext, useState } from 'react';
-const Context = createContext('undefined')
+import { Form } from 'antd';
+import { Input } from 'antd';
+
+const Context = createContext(/*'undefined'*/)
 
 export const Provider = ({children}) => {
     const [formData, setFormData] = useState([]);
+    const [form] = Form.useForm();
 
 
-    const handleCancel = (x) => {
-        //form.resetFields();
-        console.log(x);
+    const handleCancel = () => {
+        form.resetFields();
+        //console.log(x);
       };
 
 
@@ -41,9 +45,23 @@ export const Provider = ({children}) => {
         console.log(date, dateString);
       };
 
+      const expandable = {
+        expandedRowRender: (record) => (
+          <p
+            style={{
+              margin: 0,
+            }}
+          >
+            <Input defaultValue={record.date} onChange={(e) => { const newDescription = e.target.value;}}>
+            </Input>
+          </p>
+        ),
+        rowExpandable: (record) => true
+      }
+
 
       return (
-        <Context.Provider value={{handleCancel, handleDelete, formData, setFormData, onFinish}}>{children}</Context.Provider>
+        <Context.Provider value={{handleCancel, handleDelete, formData, setFormData, onFinish, form, expandable}}>{children}</Context.Provider>
 
       );
 
