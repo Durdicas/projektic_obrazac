@@ -7,8 +7,6 @@ import { Col, Row, Divider } from 'antd';
 const { Option } = Select;
 
 
-
-
 const FormaUnosa = () => {
     const {handleCancel, onFinish, form} = useProvider();
   return (

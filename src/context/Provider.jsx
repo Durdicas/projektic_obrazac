@@ -1,6 +1,7 @@
 import React, { createContext, useState } from 'react';
 import { Form } from 'antd';
 import { Input } from 'antd';
+import { v4 as uuidv4 } from "uuid";
 
 const Context = createContext(/*'undefined'*/)
 
@@ -18,7 +19,13 @@ export const Provider = ({children}) => {
       const handleDelete = (key) => {
         const dataSource = [...formData];
         setFormData(dataSource.filter(item => item.key !== key));
+        //const newData = formData.filter(item => item.key !== key);
+        //setFormData(newData);
       };
+
+      const handleAddDataToTable = (newData) => {
+        setFormData(prevFormData => [...prevFormData, newData]);
+      }
 
 
       const onFinish = (values) => {
@@ -37,9 +44,13 @@ export const Provider = ({children}) => {
         month: "2-digit",
         year: "numeric",
       });
-        const data = {...values, date:formattedDate, key:'1'}
-        setFormData([data])
-      }
+        const data = {...values, date:formattedDate, key: /*'1'*/ uuidv4(), }
+        //setFormData([data])
+        handleAddDataToTable(data);
+        form.resetFields();
+      };
+
+      
 
       const onChange = (date, dateString) => {
         console.log(date, dateString);
