@@ -11,17 +11,17 @@ const FormaUnosa = () => {
     const {handleCancel, onFinish, form} = useProvider();
   return (
     <div className="container mx-auto p-8">
-      <Form onFinish={onFinish} layout="vertical" form={form}>
+      <Form onFinish={onFinish} layout="vertical" form={form} /*component={false}*/>
         <Row gutter={24}>
           <Col span={12}>
-        <Form.Item name="date" label="Datum" rules={[{required: true }]}
+        <Form.Item name="date" label="Odaberite datum:" rules={[{required: true, message: 'Odabir datuma je obvezan unos!' }]}
          >
-          <DatePicker style={{width: '100%'}}/>
+          <DatePicker style={{width: '100%'}} placeholder="Odaberite datum"/>
         </Form.Item>
           </Col>
           <Col span={12}>
-        <Form.Item name="status" label="Status" rules={[{ required: true }]}>
-          <Select placeholder="Select a status">
+        <Form.Item name="status" label=" Odaberite status:" rules={[{ required: true, message: 'Odabir statusa je obvezan unos!' }]}>
+          <Select placeholder="Odaberite status">
             <Option value="Redovno">Redovno</Option>
             <Option value="Zabrinjavajuće">Zabrinjavajuće</Option>
             <Option value="Kritično">Kritično</Option>
@@ -34,8 +34,8 @@ const FormaUnosa = () => {
           <Col span={12}>
         <Form.Item
           name="recorded"
-          label="Status Evidentirao"
-          rules={[{ required: true }]}
+          label="Status Evidentirao:"
+          rules={[{ required: true, message: 'Obvezan podatak!' }]}
         >
           <Input />
         </Form.Item>
@@ -43,8 +43,8 @@ const FormaUnosa = () => {
         <Col span={12}>
         <Form.Item
           name="confirmed"
-          label="Status Potvrdio"
-          rules={[{ required: true }]}
+          label="Status Potvrdio:"
+          rules={[{ required: true, message: 'Obvezan podatak!' }]}
         >
           <Input />
         </Form.Item>

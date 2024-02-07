@@ -1,9 +1,9 @@
-import React from 'react';
-import Lay from './Lay';
-import FormaUnosa from './FormaUnosa';
-import Tablica from './Tablica';
-import { Provider } from '../../context/Provider';
-import Kartica from './Kartica';
+import React from "react";
+import Lay from "./Lay";
+import FormaUnosa from "./FormaUnosa";
+import Tablica from "./Tablica";
+import { Provider } from "../../context/Provider";
+import Kartica from "./Kartica";
 
 const CijeliObrazac = () => {
   return (
@@ -25,3 +25,4 @@ const CijeliObrazac = () => {
 };
 
 export default CijeliObrazac;
+
