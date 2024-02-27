@@ -5,12 +5,12 @@ const Home = () => {
   return (
     <>
     <Lay>
-        <div>Home</div>
+        <div>Početna</div>
     </Lay>
     
     </>
 
-   
+  
   );
 };
 

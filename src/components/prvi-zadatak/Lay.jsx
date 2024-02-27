@@ -4,13 +4,43 @@ import { Breadcrumb, Layout, Menu, theme } from 'antd';
 const { Header, Content, Footer } = Layout;
 const items = [
   {
-    label: (<a href="/">Home</a>),
+    label: (<a href="/">Početna</a>),
     key: '/',
     disabled: false,
   },
   {
     label: (<a href="/cijeliobrazac"> Obrazac</a>),
     key: '/cijeliobrazac',
+    disabled: false,
+  },
+  /*{
+    label: (<a href="/apikorisnici"> Api korisnici</a>),
+    key: '/apikorisnici',
+    disabled: false,
+  },
+  {
+    label: (<a href="/probno"> Probno</a>),
+    key: '/probno',
+    disabled: false,
+  },
+  {
+    label: (<a href="/probnodva"> ProbnoDva</a>),
+    key: '/probnodva',
+    disabled: false,
+  },
+  {
+    label: (<a href="/probnotri"> ProbnoTri</a>),
+    key: '/probnotri',
+    disabled: false,
+  },
+  {
+    label: (<a href="/probnocetiri"> ProbnoCetiri</a>),
+    key: '/probnocetiri',
+    disabled: false,
+  },*/
+  {
+    label: (<a href="/popiskorisnika"> PopisKorisnika</a>),
+    key: '/popiskorisnika',
     disabled: false,
   },
 ]

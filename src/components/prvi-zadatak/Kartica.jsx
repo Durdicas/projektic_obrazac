@@ -7,6 +7,7 @@ const Kartica = (props) => (
     style={{
       width: 1100,
     }}
+    pagination='true'
   >
     <div>{props.children}</div>
     {/*<p>Card content</p>

@@ -4,9 +4,10 @@ import { useProvider } from "../../context/Provider";
 import { Tag } from "antd";
 import { Input } from "antd";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, InputNumber, Typography } from "antd";
 import "./Tablica.css";
+import axios from "axios";
 
 // nije potrebno
 const originData = [];
@@ -52,7 +53,7 @@ const EditableCell = ({
         >
           {inputNode}
         </Form.Item>
-        ) : (
+      ) : (
         children
       )}
     </td>
@@ -60,12 +61,57 @@ const EditableCell = ({
 };
 
 const Tablica = () => {
-  const { handleDelete, formData, setFormData, expandable/*, form*/ } = useProvider();
+  const { handleDelete, formData, setFormData, expandable /*, form*/ } =
+    useProvider();
   const [form] = Form.useForm(); // novo dodano
   //const [data, setData] = useState(/*originData*/ ''); //(formData, setFormData)
 
   const [editingKey, setEditingKey] = useState("");
   const isEditing = (record) => record.key === editingKey;
+  //useEffect(() => {console.log("nesto")}, [formData])
+
+  // 2. Postavljanje u funkciju dohvata podataka i pozivanje te funkcije u useEffectu (u returnu se vraća popis proizvoda)
+  /*const [proizvodi, setProizvodi] = useState([]);
+
+const dohvatiProizvode = () => {
+  axios.get('https://dummyjson.com/products')
+  .then(response => {
+    setProizvodi(response.data.products);
+    console.log (setProizvodi);
+    //console.log(response.data);
+})
+  .catch(error => {
+    console.error('Došlo je do pogreške pri dohvaćanju podataka!', error);
+});
+};
+
+const x = useEffect(() => {dohvatiProizvode();}, []);
+console.log(x);*/
+
+  //useEffect(() => {dohvatiProizvode();}, []);
+
+  // 3. Postavljanje u funkciju dohvata podataka (USERS) i pozivanje te funkcije u useEffectu (u returnu se vraća popis korisnika)
+  const [proizvodi, setProizvodi] = useState([]);
+
+  const dohvatiProizvode = () => {
+    axios
+      .get("https://dummyjson.com/users")
+      .then((response) => {
+        setProizvodi(response.data.users);
+        console.log(setProizvodi);
+        //console.log(response.data);
+      })
+      .catch((error) => {
+        console.error("Došlo je do pogreške pri dohvaćanju podataka!", error);
+      });
+  };
+
+  const x = useEffect(() => {
+    dohvatiProizvode();
+  }, []);
+  console.log(x);
+
+  //useEffect(() => {dohvatiProizvode();}, []);
 
   const edit = (record) => {
     form.setFieldsValue({ ...record });
@@ -106,7 +152,6 @@ const Tablica = () => {
       console.log("Validate Failed:", errInfo);
     }
   };
-
 
   const columns = [
     {
@@ -223,28 +268,52 @@ const Tablica = () => {
     };
   });
 
+  /*const popisProizvoda = proizvodi.map(product => (
+    <div key={product.id}>
+      {product.title} - {product.brand}
+    </div>
+  ))*/
+
   return (
     <>
       <Form form={form}>
-      <Table
-        components={{
-          body: {
-            cell: EditableCell,
-          },
-        }}
-        bordered
-        //dataSource={[...formData]}
-        dataSource={formData}
-        //columns={columns} 
-        columns={mergedColumns}
-        expandable={expandable}
-        rowClassName="editable-row"
-        /*pagination={{
+        <Table
+          components={{
+            body: {
+              cell: EditableCell,
+            },
+          }}
+          bordered
+          //dataSource={[...formData]}
+          dataSource={formData}
+          //columns={columns}
+          columns={mergedColumns}
+          expandable={expandable}
+          rowClassName="editable-row"
+          /*pagination={{
         onChange: cancel,
       }}*/
-        pagination={false}
-      />
+          pagination={false}
+        />
       </Form>
+      {/*<div>
+        <h1>Popis proizvoda</h1>
+        {proizvodi.map(product => (
+        <div key={product.id}>
+          {product.title} - {product.brand}
+        </div>
+        ))}*/}
+      {/*{popisProizvoda}*/}
+      {/*</div>*/}
+      <div>
+        <h1>Popis korisnika</h1>
+        {proizvodi.map((product) => (
+          <div key={product.id}>
+            ime i prezime: {product.firstName} {product.lastName}
+          </div>
+        ))}
+        {/*{popisProizvoda}*/}
+      </div>
     </>
   );
 };
